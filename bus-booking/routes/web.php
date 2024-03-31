@@ -15,6 +15,7 @@ use App\Http\Controllers\Authcontroller;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//admin dashboard routes
 Route::group(['prefix'=>'admin'],function(){
     Route::group(['middleware'=>'admin.guest'],function(){
         Route::get('/adminindex',[Admincontroller::class,'admin_login'])->name('admin.login');// for admin login page
@@ -29,6 +30,7 @@ Route::group(['prefix'=>'admin'],function(){
     });
 });
 Route::delete('user/{id}',[Admincontroller::class,'destroy']);
+//website routes
 Route::get('/getyourseat',[buscontroller::class,'index']);//for view of homepage
 Route::get('/searchforbus',[buscontroller::class,'search']);//for search page
 Route::get('/contactus',[buscontroller::class,'contact_us']);//for contact us page 
