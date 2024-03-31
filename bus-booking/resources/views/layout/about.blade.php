@@ -22,7 +22,12 @@
                         <span><i class="fa-regular fa-user"></i> &nbsp;My Account</span>
                         <div class="dropdown-content">
                             <a href="#">Profile</a>
-                            <a href="{{url('/logout')}}">Logout</a>
+                            @if(Auth::check())
+                  <a href="{{url('/logout')}}">Log out</a>
+                
+                @else
+                <a href="{{url('/index')}}">Log in</a>
+                @endif
                         </div>
                     </li>
                 </ul>

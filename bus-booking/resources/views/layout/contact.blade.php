@@ -31,7 +31,12 @@
         <div class="dropdown-content">
           
                 <a href="#">Profile</a>
-                <a href="{{url('/logout')}}">Logout</a>
+                @if(Auth::check())
+                  <a href="{{url('/logout')}}">Log out</a>
+                
+                @else
+                <a href="{{url('/index')}}">Log in</a>
+                @endif
         </div>
 </li>
                     </li>
@@ -68,18 +73,20 @@
                 </div>
             </div>
             <div class="contactForm">
-                <form >
+                <form method="post" action="{{url('/contactus')}}">
+                    @csrf
+                  @method('post')
                     <h2>Send Massages</h2>
                     <div class="inputBox">
-                    <input type="text" name="" required="required" >
+                    <input type="text" name="name" required="required" >
                     <span>Full Name</span>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="" required="required" >
+                    <input type="text" name="email" required="required" >
                     <span> Email</span>
                 </div>
                 <div class="inputBox">
-                    <textarea name="" id=""  required=""required></textarea>
+                    <textarea name="message"></textarea>
                     <span>Type your Massage....</span>
                 </div>
                 <div class="inputBox">

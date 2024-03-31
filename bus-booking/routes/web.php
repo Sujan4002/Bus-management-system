@@ -33,7 +33,8 @@ Route::delete('user/{id}',[Admincontroller::class,'destroy']);
 //website routes
 Route::get('/getyourseat',[buscontroller::class,'index']);//for view of homepage
 Route::get('/searchforbus',[buscontroller::class,'search']);//for search page
-Route::get('/contactus',[buscontroller::class,'contact_us']);//for contact us page 
+Route::get('/contactus',[buscontroller::class,'contactus_view']);//for contact us page 
+Route::post('/contactus',[buscontroller::class,'contact_us']);//for contact us page 
 Route::get('/aboutus',[buscontroller::class,'about_us']);//for contact us page 
 Route::get('/register',[Authcontroller::class,'register_view']);// for register
 Route::post('/register',[Authcontroller::class,'register']);// for storing

@@ -34,7 +34,6 @@ class Authcontroller extends Controller
              return redirect('/register');
             }
             public function logout(){
-               \Session::flush();
                \Auth::logout();
                return redirect('/index');
             }

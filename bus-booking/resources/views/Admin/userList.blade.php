@@ -62,7 +62,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/dashboard">
+                            <a class="nav-link active" href="{{url('admin/dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
                             </a>
                         </li>
@@ -78,7 +78,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="fas fa-ticket-alt"></i> Tickets
+                                <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
                        
