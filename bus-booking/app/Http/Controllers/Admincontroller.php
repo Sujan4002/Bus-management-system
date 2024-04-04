@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\buses;
+use  App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class Admincontroller extends Controller
 {
     public function dashboard(){
         return view('Admin.dashboard');
+    }
+    public function buses(){
+
+        $busRoutes= buses::all();
+        return view('Admin.buses',['busroutes'=>$busRoutes]);
     }
     public function userlist(){
         $user = user::all(); // Fetch all users from the User model
@@ -20,7 +28,7 @@ class Admincontroller extends Controller
 	{
 		$user=user::find($id);
 		$user->delete();
-		return redirect('/userlist');
+		return redirect('admin/userlist');
 	}
     public function admin_login(){
 
@@ -62,5 +70,9 @@ class Admincontroller extends Controller
    public function adduser(){
     return view ('Admin.adduser');
    }
-
+   public function enquiry(){
+     
+     $item =Contact::all();
+     return view('Admin.enquiry',['contact'=>$item]);
+   }
 }

@@ -27,9 +27,11 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/userlist',[Admincontroller::class,'userlist']);// for view userlist
         Route::get('/logout',[Admincontroller::class,'adminlogout']);// for logout from dashboard
         Route::get('/adduser',[Admincontroller::class,'adduser']);// for adding user
+        Route::get('/busroute',[Admincontroller::class,'buses']);// for buses routes view 
+        Route::get('/enquiry',[Admincontroller::class,'enquiry']);// for enquiry of user
     });
 });
-Route::delete('user/{id}',[Admincontroller::class,'destroy']);
+Route::delete('user/{id}',[Admincontroller::class,'destroy']);// for delete user form users table 
 //website routes
 Route::get('/getyourseat',[buscontroller::class,'index']);//for view of homepage
 Route::get('/searchforbus',[buscontroller::class,'search']);//for search page

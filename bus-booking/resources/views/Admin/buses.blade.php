@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management Table</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+   
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
@@ -88,52 +87,44 @@
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
-                       <li>
-                       <a class="nav-link" href="#">
+                        <li> <a class="nav-link" href="">
                             <i class="fas fa-comment"></i></i> 
                                 Enquiry
-                            </a>
-                       </li>
+                            </a></li>
                     </ul>
                 </div>
             </nav>
           
             <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="main-content">
-                    <h1>User Table<a href="{{url('/admin/adduser')}}" class="btn btn-success float-right">Add User</a></h1>
+                    <h1>BUSES TABLE<a href="{{url('/admin/adduser')}}" class="btn btn-success float-right">Add BUSES</a></h1>
                     
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
+                                    <th>BUS ID</th>
+                                    <th>OPERATOR NAME</th>
+                                    <th>BUS NUMBER</th>
+                                    <th>CAPACITY</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
+                                @foreach($busroutes as $busRoutes)
                                 <tr>
-                                    <td>{{$loop->index+1}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>@if($user->role==2)
-                                        
-                                          Admin
-                                        
-                                        @else 
-                                            Customer
-                                        @endif
-                                    </td>
+                                    <td>{{$busRoutes->bus_id}}</td>
+                                    <td>{{$busRoutes->operator_name}}</td>
+                                    <td>{{$busRoutes->bus_number}}</td>
+                                    <td>{{$busRoutes->capacity}}</td>
                                     <td class="mr-2">
                                         <button class="btn btn-primary ">Edit</button>
-                        <form action="{{ url('user', $user->id) }}" method="post" style="display: inline;">
+                                        <form action="" method="post" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</a></button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+
                                         <button class="btn btn-info">View</button>
                                     </td>
                                 </tr>

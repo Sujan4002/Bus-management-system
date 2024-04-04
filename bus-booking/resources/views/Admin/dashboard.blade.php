@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Management System Dashboard</title>
-   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
    
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet"> <!-- Replace with your custom CSS file -->
     <style>
+        *{
+    padding: 0;
+    margin: 0;
+    font-family:"Poppins", sans-serif;
+    box-sizing: border-box;
+}
         body {
             background-color: #f8f9fa;
             margin:0;
@@ -19,8 +26,8 @@
         }
 
         .sidebar {
-		height:100vh;
-            background-color: #343a40;
+		   height:100vh;
+            background-color:#007bff;
             color: #fff;
         }
 
@@ -30,13 +37,14 @@
         }
 
         .sidebar .nav-link:hover {
-            background-color: #495057;
+            background-color: blue;
         }
 
         .main-content {
             background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color:rgba(0,0,0,0.1);
+            box-shadow: 0 0 8px #000;
             padding: 20px;
             margin-top: 20px;
         }
@@ -49,7 +57,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="{{url('admin/dashboard')}}">Bus Management System</a>
        
             <ul class="navbar-nav ml-auto">
@@ -72,7 +80,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('admin/busroute')}}">
                                 <i class="fas fa-bus"></i> Bus Routes
                             </a>
                         </li>
@@ -85,7 +93,11 @@
                             <a class="nav-link" href="#">
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
-                        </li>
+    </li>
+                            <li> <a class="nav-link" href="{{url('admin/enquiry')}}">
+                            <i class="fas fa-comment"></i></i> 
+                                Enquiry
+                            </a></li>
                        
                     </ul>
                 </div>
