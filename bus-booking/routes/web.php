@@ -31,6 +31,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/enquiry',[Admincontroller::class,'enquiry']);// for enquiry of user
     });
 });
+Route::get('/userdetails/{id}',[Admincontroller::class,'show']);// for view userlist
 Route::delete('user/{id}',[Admincontroller::class,'destroy']);// for delete user form users table 
 //website routes
 Route::get('/getyourseat',[buscontroller::class,'index']);//for view of homepage

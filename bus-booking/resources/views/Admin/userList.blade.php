@@ -89,7 +89,7 @@
                             </a>
                         </li>
                        <li>
-                       <a class="nav-link" href="#">
+                       <a class="nav-link" href="{{url('admin/enquiry')}}">
                             <i class="fas fa-comment"></i></i> 
                                 Enquiry
                             </a>
@@ -132,9 +132,9 @@
                         <form action="{{ url('user', $user->id) }}" method="post" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</a></button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                                        <button class="btn btn-info">View</button>
+                                        <a href="/userdetails/{{$user->id}}" class="btn btn-info">View</a>
                                     </td>
                                 </tr>
                                 @endforeach

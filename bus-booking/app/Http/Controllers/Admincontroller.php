@@ -23,6 +23,11 @@ class Admincontroller extends Controller
         $user = user::all(); // Fetch all users from the User model
         return view('Admin.userList',['users'=>$user]); // Pass users data to the view
     }
+    public function show($id){
+        $user = user::find($id);
+
+        return view('Admin.userdetails',['user'=>$user]);
+    }
     
     public function destroy($id)
 	{

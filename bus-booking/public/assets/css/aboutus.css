@@ -12,7 +12,7 @@
     background-position: center;
 }
 .navbar{
-     margin:auto;
+    margin:auto;
     width:100%;
     height: 100px;
     padding :10px;
@@ -93,7 +93,7 @@ width: 100%;
 }
 
 .about-1{
-    margin: 30px;
+    margin:30px;
     padding: 5px;
 }
 .about-1 h1{
@@ -116,8 +116,7 @@ width: 100%;
     margin: 30px;
     background-color: white;
     padding: 80px 30px;
- 
-    box-shadow: 0 0 9px rgba(0, 0,0  .6);  
+     box-shadow: 0 0 9px rgba(0, 0,0  .6);  
 }
 
 .about-item i{

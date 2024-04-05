@@ -67,12 +67,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('admin/busroute')}}">
                                 <i class="fas fa-bus"></i> Bus Routes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('admin/userlist')}}">
                                 <i class="fas fa-users"></i> Users 
                             </a>
                         </li>
@@ -82,7 +82,7 @@
                             </a>
                         </li>
                         <li>
-                       <a class="nav-link" href="#">
+                       <a class="nav-link" href="{{url('admin/enquiry')}}">
                             <i class="fas fa-comment"></i></i> 
                                 Enquiry
                             </a>

@@ -87,7 +87,7 @@
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
-                        <li> <a class="nav-link" href="">
+                        <li> <a class="nav-link" href="{{url('admin/enquiry')}}">
                             <i class="fas fa-comment"></i></i> 
                                 Enquiry
                             </a></li>
