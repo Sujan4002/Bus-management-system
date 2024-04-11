@@ -16,12 +16,7 @@ class Bookingcontroller extends Controller
         ->where('bus_id',$buses->fk_bus_id)->first();
         
         $seatnumber=$this->get_seat_number($busdetail->capacity);
-        //check if selected seat is available or not
-          
-           
-           
-            
-            
+       
         return view('booking.bookingform',['buses'=>$buses,'busdetail'=>$busdetail,'seatnumber'=>$seatnumber]);
 }
 public function booking_process(Request $request,$ride_id){
@@ -31,7 +26,11 @@ public function booking_process(Request $request,$ride_id){
       if($this->isAllSeatFull($ride_id)){
        return redirect()->back()->with('error','All seats are booked. please try again later.');
       }
-
+ //check if selected seat is available or not
+ $isSeatAvailable=$this->isSeatAvailable($ride_id,$request->input('seat_number'));
+ if(!$isSeatAvailable){
+     return redirect()->back()->with('error','The selected seat is already booked!');
+ }
    //storing
    $booking = new booking([ 'fk_ride_id'=>$ride_id,
 'firstname'=>$request->input('firstname'),'middlename'=>$request->input('middlename'),'lastname'=>$request->input('lastname'),'email'=>$request->input('email'),'locations'=>$request->input('locations'),'gender'=>$request->input('gender'),'payment'=>$request->input('payment'),'seat_number'=>$request->input('seat_number'),]) ;
@@ -52,6 +51,12 @@ private function get_seat_number($capcity){
      return $seatNumbers;
 }
 
+private function isSeatAvailable($ride_id,$seat_number){
+$booking= Booking::where('fk_ride_id',$ride_id)
+->where('seat_number',$seat_number)
+->first();
+return !$booking;
+}
 private function isAllSeatFull($ride_id){
 $totalBooking=Booking::where('fk_ride_id',$ride_id)->count();
 $ride=Rides::find($ride_id);
