@@ -13,5 +13,6 @@ class buses extends Model
         'operator_name',
         'bus_number',
         'capacity',
+        
     ];
 }

@@ -73,7 +73,7 @@ th, td {
     <tbody>
       @foreach($buses as $buses)
       <tr>
-        <td>{{$buses->bus_id}}</td>
+        <td>{{$buses->bus_number}}</td>
         <td>{{$buses->operator_name}}</td>
         <td> {{$buses->departure_time}}<br><br>
           {{$buses->departure}}
@@ -82,8 +82,8 @@ th, td {
           {{$buses->arrival}}</td>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$buses->capacity}}
           <br>seats Available</td>
-        <td></td>
-        <td><a href=""class="btn btn-outline-danger">BOOK</a></td>
+        <td> {{$buses->fare}}</td>
+        <td><a href="/bookingform/{{$buses->ride_id}}"class="btn btn-outline-danger">BOOK</a></td>
       </tr>
       @endforeach
     </tbody>

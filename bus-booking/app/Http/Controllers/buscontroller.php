@@ -15,7 +15,7 @@ class buscontroller extends Controller
         $departure = $request->input('departure');
         $arrival = $request->input('arrival');
         $buses =DB::table('buses')
-        ->select('buses.*','rides.departure','rides.arrival','rides.departure_time','rides.arrival_time')
+        ->select('buses.*','rides.departure','rides.arrival','rides.departure_time','rides.arrival_time','rides.fare','rides.ride_id')
         ->leftjoin('rides','rides.fk_bus_id','=','buses.bus_id')
         ->where('departure','=',$departure)
         ->where('arrival','=',$arrival)->get();

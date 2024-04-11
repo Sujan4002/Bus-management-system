@@ -15,5 +15,6 @@ class rides extends Model
         'arrival_time',
         'status',
         'fk_bus_id',
+        'fare',
     ];
 }

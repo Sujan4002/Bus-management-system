@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\buscontroller;
 use App\Http\Controllers\Admincontroller;
 use App\Http\Controllers\Authcontroller;
+use App\Http\Controllers\Bookingcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,8 @@ Route::post('/login',[Authcontroller::class,'login']);//for storing
 Route::middleware(['auth'])->group(function(){
 Route::get('/logout',[Authcontroller::class,'logout']);// for logout
 });
-
+Route::get('/bookingform/{ride_id}',[Bookingcontroller::class,'booking_form']);
+Route::post('/booking/{ride_id}',[Bookingcontroller::class,'booking_process']);
+Route::get('/bookingconfirm',function(){
+  return view ('booking.confirmation');
+});
