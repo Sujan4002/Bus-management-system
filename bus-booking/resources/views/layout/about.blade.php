@@ -15,7 +15,7 @@
                 <img src="assets/images/logo.png" alt="Company Logo" class="logo">
                 <ul>
                     <li><a href="{{url('/getyourseat')}}">Home</a></li>
-                    <li><a href="{{url('/searchforbus')}}">Book ticket</a></li>
+                    <li><a href="{{url('/mybookings')}}">Bookings</a></li>
                     <li><a href="#">Cancel ticket</a></li>
                     <li><a href="{{url('/contactus')}}">Contact us</a></li>
                     <li><a href="#">About us</a></li>

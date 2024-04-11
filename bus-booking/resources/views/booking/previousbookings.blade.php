@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus searche</title>
+    <title>My bookings</title>
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
     color:white;
   }
 
-  .search-data {
+  .booking-data {
     padding: 30px;
   }
 th{
@@ -48,7 +48,7 @@ th, td {
                     <img src="assets/images/logo.png" alt="Company Logo" class="logo">
                     <ul>
                         <li><a href="{{url('/getyourseat')}}">Home</a></li>
-                        <li><a href="{{url('/mybookings')}}">Bookings</a></li>
+                        <li><a href="#">Bookings</a></li>
                         <li><a href="#">Cancel ticket</a></li>
                         <li><a href="#">Contact us</a></li>
                         <li><a href="#">About us</a></li>
@@ -56,7 +56,7 @@ th, td {
                     </ul>
                 </div>
                    </nav>
-                   <div class="search-data">  
+                   <div class="booking-data">  
                     <table>
     <thead>
       <tr>
@@ -64,29 +64,21 @@ th, td {
         <th>Bus Name</th>
         <th>Departure</th>
         <th>Arrival </th>
-        <th>Seats Available</th>
-        <th>fare</th>
-        <th>Booking</th>
+        <th>Your Ticket</th>
       </tr>
     </thead>
     <div class="list-body">
-    <tbody>
-      @foreach($buses as $buses)
-      <tr>
-        <td>{{$buses->bus_number}}</td>
-        <td>{{$buses->operator_name}}</td>
-        <td> {{$buses->departure_time}}<br><br>
-          {{$buses->departure}}
-        </td>
-        <td>{{$buses->arrival_time}} <br><br>
-          {{$buses->arrival}}</td>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$buses->capacity}}
-          <br>seats Available</td>
-        <td> {{$buses->fare}}</td>
-        <td><a href="/bookingform/{{$buses->ride_id}}"class="btn btn-outline-danger">BOOK</a></td>
-      </tr>
-      @endforeach
-    </tbody>
+      <tbody>
+        @foreach($booking as $bookings)
+        <tr>
+          <td>{{$bookings->bus_number}}</td>
+          <td>{{$bookings->operator_name}}</td>
+          <td>{{$bookings->departure}}</td>
+          <td>{{$bookings->arrival}}</td>
+          <td><a href="{{url('/ticket/' . $bookings->booking_id)}}"class="btn btn-success">Download</a></td>
+        </tr>
+        @endforeach
+      </tbody>
     </div>
   </table></div>
                 

@@ -19,9 +19,9 @@ class booking extends Model
         'locations',
         'gender',
         'payment',
+        'booking_token',
+        'booking_id',
+         
     ];
-    public function ride()
-    {
-        return $this->belongsTo('App\Models\Rides', 'fk_ride_id');
-    }
+    
 }

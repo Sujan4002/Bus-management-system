@@ -37,6 +37,13 @@ Route::delete('user/{id}',[Admincontroller::class,'destroy']);// for delete user
 //website routes
 Route::get('/getyourseat',[buscontroller::class,'index']);//for view of homepage
 Route::get('/searchforbus',[buscontroller::class,'search']);//for search page
+Route::get('/bookingform/{ride_id}',[Bookingcontroller::class,'booking_form']);
+Route::post('/booking/{ride_id}',[Bookingcontroller::class,'booking_process']);
+Route::get('/bookingconfirm',function(){
+  return view ('booking.confirmation');
+});
+Route::get('/mybookings',[Bookingcontroller::class,'previousBookings']);//for previous booking page
+Route::get('/ticket/{booking_id}',[Bookingcontroller::class,'ticketPrint']);//for previous booking page
 Route::get('/contactus',[buscontroller::class,'contactus_view']);//for contact us page 
 Route::post('/contactus',[buscontroller::class,'contact_us']);//for contact us page 
 Route::get('/aboutus',[buscontroller::class,'about_us']);//for contact us page 
@@ -46,9 +53,4 @@ Route::get('/index',[Authcontroller::class,'index']);// for login page view
 Route::post('/login',[Authcontroller::class,'login']);//for storing
 Route::middleware(['auth'])->group(function(){
 Route::get('/logout',[Authcontroller::class,'logout']);// for logout
-});
-Route::get('/bookingform/{ride_id}',[Bookingcontroller::class,'booking_form']);
-Route::post('/booking/{ride_id}',[Bookingcontroller::class,'booking_process']);
-Route::get('/bookingconfirm',function(){
-  return view ('booking.confirmation');
 });

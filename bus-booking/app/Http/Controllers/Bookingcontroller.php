@@ -6,6 +6,8 @@ use App\Models\buses;
 use App\Models\booking;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 
 class Bookingcontroller extends Controller
@@ -31,9 +33,16 @@ public function booking_process(Request $request,$ride_id){
  if(!$isSeatAvailable){
      return redirect()->back()->with('error','The selected seat is already booked!');
  }
+ $bookingIdentifier=$request->Session()->get('booking_token');
+ if(!$bookingIdentifier){
+    $bookingIdentifier=str::random();
+    $request->session()->put('booking_token',$bookingIdentifier);
+ }
+ $bookingId='GETYRST'.str::random(6);
+
    //storing
    $booking = new booking([ 'fk_ride_id'=>$ride_id,
-'firstname'=>$request->input('firstname'),'middlename'=>$request->input('middlename'),'lastname'=>$request->input('lastname'),'email'=>$request->input('email'),'locations'=>$request->input('locations'),'gender'=>$request->input('gender'),'payment'=>$request->input('payment'),'seat_number'=>$request->input('seat_number'),]) ;
+'firstname'=>$request->input('firstname'),'middlename'=>$request->input('middlename'),'lastname'=>$request->input('lastname'),'email'=>$request->input('email'),'locations'=>$request->input('locations'),'gender'=>$request->input('gender'),'payment'=>$request->input('payment'),'seat_number'=>$request->input('seat_number'),'booking_token'=>$bookingIdentifier,'booking_id'=>$bookingId]) ;
    $booking->save();
    return redirect('/bookingconfirm')->with('success','Booking succesfully');
    
@@ -64,5 +73,25 @@ $busId= $ride->fk_bus_id;
 $busCapacity= Buses::where('bus_id',$busId)->value('capacity');
 return $totalBooking>=$busCapacity;
 }
+public function previousBookings(){
+    $bookingIdentifier=Session::get('booking_token');
 
+    $bookings=Booking::where('booking_token',$bookingIdentifier)
+    ->join('rides','bookings.fk_ride_id','=','rides.ride_id')
+    ->join('buses','rides.fk_bus_id','=','buses.bus_id')
+    ->select('bookings.*','rides.*','buses.*','bookings.id as booking_id')->get();
+    return view('booking.previousbookings',['booking'=>$bookings]);
+}
+public function ticketPrint($id){
+  $ticket=Booking::join('rides','bookings.fk_ride_id','=','rides.ride_id')
+  ->join('buses','rides.fk_bus_id','=','buses.bus_id')
+  ->select('bookings.*','rides.*','buses.*')
+  ->find($id);
+
+ $pdf= new Dompdf();
+ $pdf->loadHtml(view('booking.ticket')->with('ticket',$ticket)->render());
+ $pdf->setPaper('A4','portrait');
+ $pdf->render();
+ return $pdf->stream('ticket.pdf');
+}
 }
