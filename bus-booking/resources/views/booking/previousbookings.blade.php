@@ -60,6 +60,7 @@ th, td {
                     <table>
     <thead>
       <tr>
+        <th>Booking ID</th>
         <th>Bus No</th>
         <th>Bus Name</th>
         <th>Departure</th>
@@ -71,6 +72,7 @@ th, td {
       <tbody>
         @foreach($booking as $bookings)
         <tr>
+        <td>{{$bookings->booking_id}}</td>
           <td>{{$bookings->bus_number}}</td>
           <td>{{$bookings->operator_name}}</td>
           <td>{{$bookings->departure}}</td>
