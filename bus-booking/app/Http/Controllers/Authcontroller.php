@@ -13,7 +13,7 @@ class Authcontroller extends Controller
         //validate data 
       $request->validate(['email'=>'required','password'=>'required']);
       if(\Auth::attempt($request->only('email','password'))){
-        return redirect('/getyourseat');
+        return redirect('/getyourseat')->with('success','log in succesfully');
             }
             return redirect('/index')->with('error','Please check your credential and try again.');
     }

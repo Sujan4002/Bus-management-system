@@ -15,14 +15,14 @@ class RidesSeeder extends Seeder
     public function run()
     {
         $ride= new Rides;
-        $ride->ride_id='B2';
-        $ride->departure ='Raniganj';
-        $ride->arrival='Asansol';
-        $ride->departure_time ='8:30 am';
-        $ride->arrival_time ='9:00am';
+        $ride->ride_id='5';
+        $ride->departure ='Asansol';
+        $ride->arrival='Raniganj';
+        $ride->departure_time ='9:40 am';
+        $ride->arrival_time ='10:00am';
         $ride->status = 1;
-        $ride->fare = 1000;
-        $ride->fk_bus_id= 101;
+        $ride->fare = 1086;
+        $ride->fk_bus_id= 108;
         $ride->save();
     }
 }

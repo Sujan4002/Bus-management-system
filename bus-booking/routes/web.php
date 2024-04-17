@@ -28,11 +28,15 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/userlist',[Admincontroller::class,'userlist']);// for view userlist
         Route::get('/logout',[Admincontroller::class,'adminlogout']);// for logout from dashboard
         Route::get('/adduser',[Admincontroller::class,'adduser']);// for adding user
+        Route::post('/adduser',[Admincontroller::class,'addnewuser']);// for adding user
         Route::get('/busroute',[Admincontroller::class,'buses']);// for buses routes view 
         Route::get('/enquiry',[Admincontroller::class,'enquiry']);// for enquiry of user
+        Route::get('/bookings',[Admincontroller::class,'bookings']);// for buses bookings
     });
 });
 Route::get('/userdetails/{id}',[Admincontroller::class,'show']);// for view userlist
+Route::get('/users/{id}',[Admincontroller::class,'useredit'])->name('users.edit');// for view userlist
+Route::put('/user-update/{id}',[Admincontroller::class,'userUpdate'])->name('users.update');// for view userlist
 Route::delete('user/{id}',[Admincontroller::class,'destroy']);// for delete user form users table 
 //website routes
 Route::get('/getyourseat',[buscontroller::class,'index']);//for view of homepage
@@ -44,6 +48,7 @@ Route::get('/bookingconfirm',function(){
 });
 Route::get('/mybookings',[Bookingcontroller::class,'previousBookings']);//for previous booking page
 Route::get('/ticket/{booking_id}',[Bookingcontroller::class,'ticketPrint']);//for previous booking page
+Route::delete('/ticket/{booking_id}/cancel',[Bookingcontroller::class,'cancelBooking']);//for previous booking page
 Route::get('/contactus',[buscontroller::class,'contactus_view']);//for contact us page 
 Route::post('/contactus',[buscontroller::class,'contact_us']);//for contact us page 
 Route::get('/aboutus',[buscontroller::class,'about_us']);//for contact us page 

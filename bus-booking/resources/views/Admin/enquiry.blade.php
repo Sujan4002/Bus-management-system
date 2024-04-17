@@ -114,12 +114,7 @@
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->message}}</td>
                                     <td class="mr-2">
-                                        <button class="btn btn-primary ">Edit</button>
-                                        <form action="" method="post" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+
 
                                         <button class="btn btn-info">View</button>
                                     </td>

@@ -3,30 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Management System Dashboard</title>
+    <title>All Bookings</title>
    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-
     <style>
-          *{
+        *{
     padding: 0;
     margin: 0;
     font-family:"Poppins", sans-serif;
     box-sizing: border-box;
 }
-    .con{
-        margin:auto;
-        height: 550px;
-          width:400px;
-          border: 1px solid #ccc;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        } 
-      
+        body {
+            background-color: #f8f9fa;
+        }
 
         .sidebar {
 		height:100vh;
@@ -47,7 +38,7 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 15px;
             margin-top: 20px;
         }
 
@@ -55,8 +46,10 @@
             color: #333;
         }
     </style>
-    </head>
+</head>
 <body>
+
+
     <nav class="navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Bus Management System</a>
        
@@ -94,49 +87,56 @@
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
-                        <li>
-                       <a class="nav-link" href="{{url('admin/enquiry')}}">
+                        <li> <a class="nav-link" href="{{url('admin/enquiry')}}">
                             <i class="fas fa-comment"></i></i> 
                                 Enquiry
-                            </a>
-                       </li>
+                            </a></li>
                     </ul>
                 </div>
-    </nav>
-  <div class="con">
-  <h2>Add new user</h2>
-                    <form action="{{url('admin/adduser')}}"method="post">
-                        @csrf
-                        @method('post')
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password"name="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Confirm Password:</label>
-                            <input type="password" class="form-control" id="cpassword" placeholder="Password"name="password_confirmation">
-                        </div>
-                        <div class="form-group">
-                            <label for="role">Role:</label>
-                            <select class="form-control" id="role" name="role">
-                            <option value=" ">Select Role</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+            </nav>
+          
+            <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div class="main-content">
+                    <h1>Bookings Table</h1>
+                    
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>BOOKING ID</th>
+                                    <th>NAME</th>
+                                    <th>EMAIL</th>
+                                    <th>ROUTE</th>
+                                    <th>SEAT_NO</th>
+                                    <th>PAYMENT</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($bookings as $bookings)
+                                <tr>
+                                    <td>{{$bookings->booking_id}}</td>
+                                    <td>{{$bookings->firstname}} {{$bookings->lastname}} </td>
+                                    <td>{{$bookings->email}}</td>
+                                     
+                                    <td>{{$bookings->departure}} &nbsp;-&nbsp;{{$bookings->arrival}}
+                                    <td>{{$bookings->seat_number}}</td>
+                                    <td>{{$bookings->payment}}</td>
+                                    </td>                                    <td class="mr-2">
+                                       
+                                      
+
+                                        <button class="btn btn-info">View</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </body>
 </html>

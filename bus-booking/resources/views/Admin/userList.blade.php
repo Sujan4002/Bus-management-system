@@ -46,6 +46,7 @@
         .main-content h1 {
             color: #333;
         }
+        
     </style>
 </head>
 <body>
@@ -84,7 +85,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('admin/bookings')}}">
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
@@ -127,15 +128,21 @@
                                             Customer
                                         @endif
                                     </td>
-                                    <td class="mr-2">
-                                        <button class="btn btn-primary ">Edit</button>
-                        <form action="{{ url('user', $user->id) }}" method="post" style="display: inline;">
+                                    <td>
+                                       <div class="btn-grp d-inline-flex">
+                                       
+                            <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"style="margin-right:5px;">EDIT</a>
+                        <form action="{{ url('user', $user->id) }}" method="post"style="margin-right:5px;" >
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                                        <a href="/userdetails/{{$user->id}}" class="btn btn-info">View</a>
+                                        <a href="/userdetails/{{$user->id}}" class="btn btn-info ">View</a>
                                     </td>
+                                       </div>
+                                        
+                    
+                                   
                                 </tr>
                                 @endforeach
                             </tbody>

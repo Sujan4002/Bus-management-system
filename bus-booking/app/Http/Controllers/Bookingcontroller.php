@@ -33,16 +33,11 @@ public function booking_process(Request $request,$ride_id){
  if(!$isSeatAvailable){
      return redirect()->back()->with('error','The selected seat is already booked!');
  }
- $bookingIdentifier=$request->Session()->get('booking_token');
- if(!$bookingIdentifier){
-    $bookingIdentifier=str::random();
-    $request->session()->put('booking_token',$bookingIdentifier);
- }
  $bookingId='GETYRST'.str::random(6);
 
    //storing
    $booking = new booking([ 'fk_ride_id'=>$ride_id,
-'firstname'=>$request->input('firstname'),'middlename'=>$request->input('middlename'),'lastname'=>$request->input('lastname'),'email'=>$request->input('email'),'locations'=>$request->input('locations'),'gender'=>$request->input('gender'),'payment'=>$request->input('payment'),'seat_number'=>$request->input('seat_number'),'booking_token'=>$bookingIdentifier,'booking_id'=>$bookingId]) ;
+'firstname'=>$request->input('firstname'),'middlename'=>$request->input('middlename'),'lastname'=>$request->input('lastname'),'email'=>$request->input('email'),'locations'=>$request->input('locations'),'gender'=>$request->input('gender'),'payment'=>$request->input('payment'),'seat_number'=>$request->input('seat_number'),'booking_id'=>$bookingId]) ;
    $booking->save();
    return redirect('/bookingconfirm')->with('success','Booking succesfully');
    
@@ -74,12 +69,11 @@ $busCapacity= Buses::where('bus_id',$busId)->value('capacity');
 return $totalBooking>=$busCapacity;
 }
 public function previousBookings(){
-    $bookingIdentifier=Session::get('booking_token');
-
-    $bookings=Booking::where('booking_token',$bookingIdentifier)
-    ->join('rides','bookings.fk_ride_id','=','rides.ride_id')
+    
+    $bookings=Booking::join('rides','bookings.fk_ride_id','=','rides.ride_id')
     ->join('buses','rides.fk_bus_id','=','buses.bus_id')
     ->select('bookings.*','rides.*','buses.*','bookings.id as booking_id')->get();
+
     return view('booking.previousbookings',['booking'=>$bookings]);
 }
 public function ticketPrint($id){
@@ -93,5 +87,14 @@ public function ticketPrint($id){
  $pdf->setPaper('A4','portrait');
  $pdf->render();
  return $pdf->stream('ticket.pdf');
+}
+public function cancelBooking($booking_id){
+   $cancel= Booking::find($booking_id);
+   if(!$cancel){
+        return redirect()->back()->with('error','Booking not found.');
+}
+
+ $cancel->delete();
+ return redirect()->back()->with('success','Booking cancelled successfully.');
 }
 }

@@ -16,9 +16,9 @@ class BusesSeeder extends Seeder
     public function run()
     {
         $bus= new buses;
-        $bus->bus_id=101;
-        $bus->operator_name ='Get your seat luxary';
-        $bus->bus_number=1256567;
+        $bus->bus_id=108;
+        $bus->operator_name ='SkyRide';
+        $bus->bus_number=1803177;
         $bus->capacity='50';
         $bus->save();
     }

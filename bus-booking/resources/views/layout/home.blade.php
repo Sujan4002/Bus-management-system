@@ -43,6 +43,12 @@
                 @else
                 <a href="{{url('/index')}}">Log in</a>
                 @endif
+               @if(session('success'))
+               <?php  
+    echo "<script>alert('Log in succesfully')</script>";
+    ?>
+    @endif
+
                
                
         </div>

@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
 <style>
@@ -26,7 +27,7 @@
 th{
   background-color:rgba(0,0,0,0.6);
     box-shadow: 0 0 10px #000;
-    padding:10px;
+    padding:20px;
     
 }
 td{
@@ -39,7 +40,7 @@ th, td {
   padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 30px;
-  padding-right: 40px;
+  
 }
 </style>
      <div class="banner">
@@ -56,6 +57,7 @@ th, td {
                     </ul>
                 </div>
                    </nav>
+                   
                    <div class="booking-data">  
                     <table>
     <thead>
@@ -65,10 +67,18 @@ th, td {
         <th>Bus Name</th>
         <th>Departure</th>
         <th>Arrival </th>
-        <th>Your Ticket</th>
+        <th>Ticket</th>
       </tr>
+     
     </thead>
+    
+
     <div class="list-body">
+      @if(session('success'))
+      <div class="alert alert-success">
+        {{session('success')}}
+      </div>
+      @endif
       <tbody>
         @foreach($booking as $bookings)
         <tr>
@@ -77,13 +87,22 @@ th, td {
           <td>{{$bookings->operator_name}}</td>
           <td>{{$bookings->departure}}</td>
           <td>{{$bookings->arrival}}</td>
-          <td><a href="{{url('/ticket/' . $bookings->booking_id)}}"class="btn btn-success">Download</a></td>
+         
+          <td>
+            <div class="btn-grp d-inline-flex">
+            <a href="{{url('/ticket/' . $bookings->booking_id)}}"class="btn btn-success me-3">Download</a>
+          <form action="{{url('/ticket/'.$bookings->booking_id.'/cancel')}}" method="post">
+            @csrf 
+            @method('DELETE')
+            <button type="submit"class="btn btn-danger">Cancel</button>
+          </form>
+            </div>
+            </td>
         </tr>
         @endforeach
       </tbody>
     </div>
   </table></div>
-                
 </div>
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
         <div class="footer-contain" style="background-color: #24262b;border:black">

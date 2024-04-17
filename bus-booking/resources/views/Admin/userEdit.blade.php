@@ -18,7 +18,7 @@
 }
     .con{
         margin:auto;
-        height: 550px;
+        height: 460px;
           width:400px;
           border: 1px solid #ccc;
             padding: 20px;
@@ -104,30 +104,22 @@
                 </div>
     </nav>
   <div class="con">
-  <h2>Add new user</h2>
-                    <form action="{{url('admin/adduser')}}"method="post">
+                    <h2>Edit the user details</h2>
+                    <form action="{{ route('users.update', $user->id) }}"method="post">
                         @csrf
-                        @method('post')
+                        @method('PUT')
                         <div class="form-group">
                             <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+                            <input type="text" class="form-control " id="name" placeholder="Enter name" value="{{$user->name}}" name="name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            <input type="email" class="form-control" id="email" placeholder="Enter email"value="{{$user->email}} "name="email">
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password"name="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Confirm Password:</label>
-                            <input type="password" class="form-control" id="cpassword" placeholder="Password"name="password_confirmation">
-                        </div>
+                        
                         <div class="form-group">
                             <label for="role">Role:</label>
-                            <select class="form-control" id="role" name="role">
-                            <option value=" ">Select Role</option>
+                            <select class="form-control" id="role"name="role">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                             </select>
