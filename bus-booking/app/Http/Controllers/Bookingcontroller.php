@@ -72,7 +72,7 @@ public function previousBookings(){
     
     $bookings=Booking::join('rides','bookings.fk_ride_id','=','rides.ride_id')
     ->join('buses','rides.fk_bus_id','=','buses.bus_id')
-    ->select('bookings.*','rides.*','buses.*','bookings.id as booking_id')->get();
+    ->select('bookings.*','rides.*','buses.*','bookings.id as booking_id','bookings.status as booking_status')->get();
 
     return view('booking.previousbookings',['booking'=>$bookings]);
 }
@@ -93,8 +93,13 @@ public function cancelBooking($booking_id){
    if(!$cancel){
         return redirect()->back()->with('error','Booking not found.');
 }
+if($cancel->status=='canceled'){
+    return redirect()->back()->with('error','Booking is already cancelled.');
+}
+$cancel->status='canceled';
+$cancel->save();
 
- $cancel->delete();
+ 
  return redirect()->back()->with('success','Booking cancelled successfully.');
 }
 }

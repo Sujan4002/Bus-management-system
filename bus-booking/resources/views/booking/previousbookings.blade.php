@@ -67,6 +67,7 @@ th, td {
         <th>Bus Name</th>
         <th>Departure</th>
         <th>Arrival </th>
+        <th>Booking Status</th>
         <th>Ticket</th>
       </tr>
      
@@ -74,11 +75,6 @@ th, td {
     
 
     <div class="list-body">
-      @if(session('success'))
-      <div class="alert alert-success">
-        {{session('success')}}
-      </div>
-      @endif
       <tbody>
         @foreach($booking as $bookings)
         <tr>
@@ -87,22 +83,30 @@ th, td {
           <td>{{$bookings->operator_name}}</td>
           <td>{{$bookings->departure}}</td>
           <td>{{$bookings->arrival}}</td>
+          <td>{{$bookings->booking_status}}</td>
          
           <td>
             <div class="btn-grp d-inline-flex">
             <a href="{{url('/ticket/' . $bookings->booking_id)}}"class="btn btn-success me-3">Download</a>
-          <form action="{{url('/ticket/'.$bookings->booking_id.'/cancel')}}" method="post">
-            @csrf 
-            @method('DELETE')
-            <button type="submit"class="btn btn-danger">Cancel</button>
-          </form>
+          <a href="{{url('/ticket/'.$bookings->booking_id.'/cancel')}}"class="btn btn-danger" >Cancel</a>
             </div>
             </td>
         </tr>
-        @endforeach
-      </tbody>
+       
     </div>
   </table></div>
+  @endforeach
+      </tbody>
+      @if(session('success'))
+      <div class="alert alert-danger text-center"role="alert">
+        <strong>{{session('success')}}</strong>
+      </div>
+      @endif
+      @if(session('error'))
+      <div class="alert alert-warning text-center"role="alert">
+        <strong>{{session('error')}}</strong>
+      </div>
+      @endif
 </div>
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
         <div class="footer-contain" style="background-color: #24262b;border:black">
@@ -150,5 +154,6 @@ th, td {
   </div>
 </div>
     </footer>
+    
 </body>
 </html>

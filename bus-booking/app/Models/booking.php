@@ -21,6 +21,7 @@ class booking extends Model
         'payment',
         'booking_token',
         'booking_id',
+        'status'
          
     ];
     

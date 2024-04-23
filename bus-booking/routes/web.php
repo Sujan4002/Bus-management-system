@@ -48,7 +48,7 @@ Route::get('/bookingconfirm',function(){
 });
 Route::get('/mybookings',[Bookingcontroller::class,'previousBookings']);//for previous booking page
 Route::get('/ticket/{booking_id}',[Bookingcontroller::class,'ticketPrint']);//for previous booking page
-Route::delete('/ticket/{booking_id}/cancel',[Bookingcontroller::class,'cancelBooking']);//for previous booking page
+Route::get('/ticket/{booking_id}/cancel',[Bookingcontroller::class,'cancelBooking']);//for previous booking page
 Route::get('/contactus',[buscontroller::class,'contactus_view']);//for contact us page 
 Route::post('/contactus',[buscontroller::class,'contact_us']);//for contact us page 
 Route::get('/aboutus',[buscontroller::class,'about_us']);//for contact us page 
