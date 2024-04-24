@@ -62,7 +62,7 @@ th, td {
                     <table>
     <thead>
       <tr>
-        <th>Booking ID</th>
+        <th>ID</th>
         <th>Bus No</th>
         <th>Bus Name</th>
         <th>Departure</th>
@@ -92,10 +92,10 @@ th, td {
             </div>
             </td>
         </tr>
-       
+        @endforeach
     </div>
   </table></div>
-  @endforeach
+  
       </tbody>
       @if(session('success'))
       <div class="alert alert-danger text-center"role="alert">
