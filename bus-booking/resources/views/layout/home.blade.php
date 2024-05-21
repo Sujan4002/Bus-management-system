@@ -28,7 +28,7 @@
                 <ul>
                     <li><a href="{{url('/getyourseat')}}">Home</a></li>
                     <li><a href="{{url('/mybookings')}}">Bookings</a></li>
-                    <li><a href="#">Cancel ticket</a></li>
+        
                     <li><a href="{{url('/contactus')}}">Contact us</a></li>
                     <li><a href="{{url('/aboutus')}}">About us</a></li>
                     <li class="dropdown">
@@ -86,7 +86,6 @@
             </div>
         </form>
 </div>
-
     <div class="faq-section">
     <h3>Get your seat - FAQ</h3>
     <div class="faq-container">

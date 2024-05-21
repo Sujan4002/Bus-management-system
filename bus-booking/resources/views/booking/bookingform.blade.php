@@ -193,7 +193,6 @@ margin-bottom:15px;
                             </div>
                             <div class="seatSelection">
                                 <select name="seat_number">
-    
                                     <option value="">Select Seat</option>
                                     @foreach($seatnumber as $seatnumber)
                                     <option value="{{$seatnumber}}">{{$seatnumber}}</option>

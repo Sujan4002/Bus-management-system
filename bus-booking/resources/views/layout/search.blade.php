@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus searche</title>
+    <title>Bus search</title>
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,13 +49,19 @@ th, td {
                     <ul>
                         <li><a href="{{url('/getyourseat')}}">Home</a></li>
                         <li><a href="{{url('/mybookings')}}">Bookings</a></li>
-                        <li><a href="#">Cancel ticket</a></li>
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">About us</a></li>
+      
+                        <li><a href="{{url('/contactus')}}">Contact us</a></li>
+                        <li><a href="{{url('/aboutus')}}">About us</a></li>
                         <li><a href="#"><i class="fa-regular fa-user"></i>&nbsp;&nbsp;My profile</a></li>
                     </ul>
                 </div>
                    </nav>
+                   @if($message){
+                    <div class="alert alert-warning text-center"role="alert">
+                      <b>{{$message}}</b>
+                                         </div>
+                   }
+                   @else
                    <div class="search-data">  
                     <table>
     <thead>
@@ -64,13 +70,13 @@ th, td {
         <th>Bus Name</th>
         <th>Departure</th>
         <th>Arrival </th>
-        <th>Seats Available</th>
+        <th>Capcity</th>
         <th>fare</th>
         <th>Booking</th>
       </tr>
     </thead>
     <div class="list-body">
-    <tbody>
+    <tbody>    
       @foreach($buses as $buses)
       <tr>
         <td>{{$buses->bus_number}}</td>
@@ -80,8 +86,8 @@ th, td {
         </td>
         <td>{{$buses->arrival_time}} <br><br>
           {{$buses->arrival}}</td>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$buses->capacity}}
-          <br>seats Available</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$counts[$buses->ride_id] }}
+          <br>Seats avaiable</td>
         <td> {{$buses->fare}}</td>
         <td><a href="/bookingform/{{$buses->ride_id}}"class="btn btn-outline-danger">BOOK</a></td>
       </tr>
@@ -89,7 +95,7 @@ th, td {
     </tbody>
     </div>
   </table></div>
-                
+  @endif      
 </div>
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
         <div class="footer-contain" style="background-color: #24262b;border:black">

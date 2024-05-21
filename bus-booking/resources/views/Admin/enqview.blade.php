@@ -3,30 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Management System Dashboard</title>
-   
+    <title>User Management Table</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-
     <style>
-          *{
+        *{
     padding: 0;
     margin: 0;
     font-family:"Poppins", sans-serif;
     box-sizing: border-box;
 }
-    .con{
-        margin:auto;
-        height: 460px;
-          width:400px;
-          border: 1px solid #ccc;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        } 
-      
+        body {
+            background-color: #f8f9fa;
+        }
 
         .sidebar {
 		height:100vh;
@@ -54,9 +46,28 @@
         .main-content h1 {
             color: #333;
         }
+        .details-con{
+
+            margin:auto;
+        height: 400px;
+          width:400px;
+          border: 1px solid #ccc;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+        }
+        strong{
+            color:black;
+        }
+        h1{
+            color: black;
+        }
     </style>
-    </head>
+</head>
 <body>
+
+
     <nav class="navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Bus Management System</a>
        
@@ -94,7 +105,7 @@
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
-                        <li>
+                       <li>
                        <a class="nav-link" href="{{url('admin/enquiry')}}">
                             <i class="fas fa-comment"></i></i> 
                                 Enquiry
@@ -102,33 +113,25 @@
                        </li>
                     </ul>
                 </div>
-    </nav>
-  <div class="con">
-                    <h2>Edit the user details</h2>
-                    <form action="{{ route('users.update', $user->id) }}"method="post">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control " id="name" placeholder="Enter name" value="{{$user->name}}" name="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email"value="{{$user->email}} "name="email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="role">Role:</label>
-                            <select class="form-control" id="role"name="role">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+            </nav>
+            <div class="details-con">
+              
+
+            <h1 class="text-center pb-5">
+               Enquiry Details 
+               </h1>
+               <div class="userdetails">
+               <p><strong>ID:</strong>&nbsp;&nbsp;{{$items->id}}
+                 <p><strong>Name:</strong>&nbsp;&nbsp;{{$items->name}}</p>
+                 <p><strong>Email:</strong>&nbsp;&nbsp;{{$items->email}}</p>
+                 <p><strong>Message:</strong>&nbsp;&nbsp;{{$items->message}}
+                
+              
+</p> </div> 
             </div>
+            
         </div>
     </div>
+    
 </body>
 </html>

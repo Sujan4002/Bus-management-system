@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('admin/bookings')}}">
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
@@ -93,7 +93,7 @@
           
             <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="main-content">
-                    <h1>User Table<a href="" class="btn btn-success float-right">Add User</a></h1>
+                    <h1>User Table</h1>
                     
                     <div class="table-responsive">
                         <table class="table">
@@ -116,7 +116,7 @@
                                     <td class="mr-2">
 
 
-                                        <button class="btn btn-info">View</button>
+                                        <a class="btn btn-info" href="{{url('/enqview/'.$item->id)}}">View</a>
                                     </td>
                                 </tr>
                                 @endforeach

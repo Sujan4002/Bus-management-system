@@ -90,7 +90,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('admin/bookings')}}">
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
     </li>

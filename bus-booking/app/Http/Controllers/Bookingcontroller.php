@@ -18,7 +18,7 @@ class Bookingcontroller extends Controller
         ->where('bus_id',$buses->fk_bus_id)->first();
         
         $seatnumber=$this->get_seat_number($busdetail->capacity);
-       
+        
         return view('booking.bookingform',['buses'=>$buses,'busdetail'=>$busdetail,'seatnumber'=>$seatnumber]);
 }
 public function booking_process(Request $request,$ride_id){
@@ -102,4 +102,5 @@ $cancel->save();
  
  return redirect()->back()->with('success','Booking cancelled successfully.');
 }
+
 }

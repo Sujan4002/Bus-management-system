@@ -22,7 +22,7 @@
                 <ul>
                     <li><a href="/getyourseat">Home</a></li>
                     <li><a href="{{url('/mybookings')}}">Bookings</a></li>
-                    <li><a href="#">Cancel ticket</a></li>
+                    
                     <li><a href="{{url('/contactus')}}">Contact us</a></li>
                     <li><a href="{{url('/aboutus')}}">About us</a></li>
                     <li class="dropdown">

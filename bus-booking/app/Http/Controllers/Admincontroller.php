@@ -21,6 +21,16 @@ class Admincontroller extends Controller
         $busRoutes= buses::all();
         return view('Admin.buses',['busroutes'=>$busRoutes]);
     }
+    //new bus added page 
+    public function addbus(){
+        return view('Admin.addbus');
+    }
+    public function addnewbus(Request $request){
+        //validate data 
+        $request->validate(['bus_id'=>'required','operator_name'=>'required','bus_number'=>'required']);//validation
+        buses::create(['bus_id' => $request->bus_id, 'operator_name' => $request->operator_name,'bus_number'=>$request->bus_number,'capacity'=>$request->capacity]);//pass data to buses table throw user model
+        return redirect('/admin/addbus')->with('success','Added new bus');
+   }
     //start of users table related functions 
     public function userlist(){
         $user = user::all(); // Fetch all users from the User model
@@ -109,6 +119,10 @@ class Admincontroller extends Controller
     ->select('bookings.booking_id','bookings.firstname','bookings.lastname','bookings.seat_number','bookings.email','bookings.payment','rides.*')->get();
 
     return view('Admin.bookings',['bookings'=>$bookings]);
+}
+public function enqview($id){
+    $item =Contact::find($id);
+    return view('Admin.enqview',['items'=>$item]);
 }
   }
 

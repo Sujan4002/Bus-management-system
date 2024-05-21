@@ -29,11 +29,18 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/logout',[Admincontroller::class,'adminlogout']);// for logout from dashboard
         Route::get('/adduser',[Admincontroller::class,'adduser']);// for adding user
         Route::post('/adduser',[Admincontroller::class,'addnewuser']);// for adding user
+        Route::get('/addbus',[Admincontroller::class,'addbus']);// for adding buses
+        Route::post('/addbus',[Admincontroller::class,'addnewbus']);// for adding buses
         Route::get('/busroute',[Admincontroller::class,'buses']);// for buses routes view 
         Route::get('/enquiry',[Admincontroller::class,'enquiry']);// for enquiry of user
         Route::get('/bookings',[Admincontroller::class,'bookings']);// for buses bookings
+
+        }
+    );
+
     });
-});
+
+Route::get('/enqview/{id}',[Admincontroller::class,'enqview']);// for view specific enq 
 Route::get('/userdetails/{id}',[Admincontroller::class,'show']);// for view userlist
 Route::get('/users/{id}',[Admincontroller::class,'useredit'])->name('users.edit');// for view userlist
 Route::put('/user-update/{id}',[Admincontroller::class,'userUpdate'])->name('users.update');// for view userlist

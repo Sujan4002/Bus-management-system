@@ -18,7 +18,7 @@
 }
     .con{
         margin:auto;
-        height: 460px;
+        height: 490px;
           width:400px;
           border: 1px solid #ccc;
             padding: 20px;
@@ -103,29 +103,37 @@
                     </ul>
                 </div>
     </nav>
-  <div class="con">
-                    <h2>Edit the user details</h2>
-                    <form action="{{ route('users.update', $user->id) }}"method="post">
-                        @csrf
-                        @method('PUT')
+   
+  <div class="con">        
+  @if(session('success'))
+                <div class="alert alert-success "role="alert">
+               {{session('success')}}
+                </div>
+                @endif
+               
+                    <form method="post" action="{{url('admin/addbus')}}">
+                        @csrf 
+                        @method('post')
+                        <h1><b>Add Bus</b></h1>
                         <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control " id="name" placeholder="Enter name" value="{{$user->name}}" name="name">
+                            <label for="bus_id">BUS ID:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Bus id"name="bus_id">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email"value="{{$user->email}} "name="email">
+                            <label for="operator_name">OPERATOR NAME:</label>
+                            <input type="text" class="form-control" id="operator_name" placeholder="Enter Operator name"name="operator_name">
                         </div>
-                        
                         <div class="form-group">
-                            <label for="role">Role:</label>
-                            <select class="form-control" id="role"name="role">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
+                            <label for="bus_number">BUS NUMBER:</label>
+                            <input type="number" class="form-control" id="bus_number" placeholder="Bus number"name="bus_number">
+                        </div>
+                        <div class="form-group">
+                            <label for="capacity">CAPACITY:</label>
+                            <input type="number" class="form-control" id="capacity" placeholder="Bus Capacity"name="capacity">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                   
                 </div>
             </div>
         </div>

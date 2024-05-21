@@ -16,9 +16,9 @@
                 <ul>
                     <li><a href="{{url('/getyourseat')}}">Home</a></li>
                     <li><a href="{{url('/mybookings')}}">Bookings</a></li>
-                    <li><a href="#">Cancel ticket</a></li>
+                   
                     <li><a href="{{url('/contactus')}}">Contact us</a></li>
-                    <li><a href="#">About us</a></li>
+                    <li><a href="{{url('/aboutus')}}">About us</a></li>
                     <li class="dropdown">
                         <span><i class="fa-regular fa-user"></i> &nbsp;My Account</span>
                         <div class="dropdown-content">
@@ -48,13 +48,13 @@
                 <i class="fa fa-book"></i>
                 <h3>MISSION</h3>
                 <hr>
-                <p>Our mission is to create a user-friendly and efficient bus management system tailored to the specific needs of our college. By leveraging technology and implementing best practices, we seek to optimize the process of scheduling, tracking, and accessing campus buses, ultimately enhancing the overall experience for everyone involved.</p>
+                <p>Our mission is to create a user-friendly and efficient bus management system tailored to the specific needs of our college.</p>
             </div>
             <div class="about-item text-center">
                 <i class="fa fa-earth"></i>
                 <h3>Who We Are</h3>
                 <hr>
-                <p>We are a group of students from diverse academic backgrounds, including computer science, engineering, and business management. Together, we bring a unique blend of skills and perspectives to the table, allowing us to tackle complex challenges and deliver innovative solutions.</p>
+                <p>We are a group of students from diverse academic backgrounds, including computer science, engineering, and business management.</p>
             </div>
             <div class="about-item text-center">
                 <i class="fa fa-pencil"></i>

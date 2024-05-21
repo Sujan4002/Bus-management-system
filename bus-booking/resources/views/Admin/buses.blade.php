@@ -83,7 +83,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('admin/bookings')}}">
                                 <i class="fas fa-ticket-alt"></i> Bookings
                             </a>
                         </li>
@@ -97,7 +97,7 @@
           
             <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="main-content">
-                    <h1>BUSES TABLE<a href="{{url('/admin/adduser')}}" class="btn btn-success float-right">Add BUSES</a></h1>
+                    <h1>BUSES TABLE<a href="{{url('/admin/addbus')}}" class="btn btn-success float-right">Add BUSES</a></h1>
                     
                     <div class="table-responsive">
                         <table class="table">

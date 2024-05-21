@@ -91,11 +91,6 @@ width: 100%;
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
-.about-1{
-    margin:30px;
-    padding: 5px;
-}
 .about-1 h1{
     text-align: center;
     color:  #00bcd4;
@@ -110,7 +105,7 @@ width: 100%;
 }
 .about-item{
    display: grid;
-   grid-template-columns: repeat(auto-fit,minmax11(200px,1fr));
+   grid-template-columns: repeat(auto-fit,minmax11(50px,1fr));
    grid-gap: 20px;
     display: inline-block;
     margin: 30px;
@@ -120,7 +115,7 @@ width: 100%;
 }
 
 .about-item i{
-   
+ 
     font-size: 43px;
     margin: 0;
 }
