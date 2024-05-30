@@ -84,8 +84,18 @@
                     Search Buses
                 </button>
             </div>
+            @if ($errors->any())
+            <div class="text-warning text-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                       <p> <b>{{ $error }}</b></p>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         </form>
 </div>
+
     <div class="faq-section">
     <h3>Get your seat - FAQ</h3>
     <div class="faq-container">

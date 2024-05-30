@@ -53,9 +53,11 @@ Route::post('/booking/{ride_id}',[Bookingcontroller::class,'booking_process']);
 Route::get('/bookingconfirm',function(){
   return view ('booking.confirmation');
 });
+
 Route::get('/mybookings',[Bookingcontroller::class,'previousBookings']);//for previous booking page
 Route::get('/ticket/{booking_id}',[Bookingcontroller::class,'ticketPrint']);//for previous booking page
 Route::get('/ticket/{booking_id}/cancel',[Bookingcontroller::class,'cancelBooking']);//for previous booking page
+Route::get('/download-cancellation/{id}', [BookingController::class, 'downloadCancellation'])->name('download.cancellation');
 Route::get('/contactus',[buscontroller::class,'contactus_view']);//for contact us page 
 Route::post('/contactus',[buscontroller::class,'contact_us']);//for contact us page 
 Route::get('/aboutus',[buscontroller::class,'about_us']);//for contact us page 

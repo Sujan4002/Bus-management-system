@@ -11,6 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function confirmCancellation(event) {
+            if (!confirm('Are you sure you want to cancel this booking?')) {
+                event.preventDefault();
+            }
+        }
+    </script>
 </head>
 <body>
 <style>
@@ -59,47 +66,48 @@ th, td {
                    </nav>
                    
                    <div class="booking-data">  
-                    <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Bus No</th>
-        <th>Bus Name</th>
-        <th>Departure</th>
-        <th>Arrival </th>
-        <th>Booking Status</th>
-        <th>Ticket</th>
-      </tr>
-     
-    </thead>
-    
+                    @if(count($booking) > 0)
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Bus No</th>
+                                    <th>Bus Name</th>
+                                    <th>Departure</th>
+                                    <th>Arrival </th>
+                                    <th>Booking Status</th>
+                                    <th>Ticket</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($booking as $bookings)
+                                <tr>
+                                    <td>{{$bookings->booking_id}}</td>
+                                    <td>{{$bookings->bus_number}}</td>
+                                    <td>{{$bookings->operator_name}}</td>
+                                    <td>{{$bookings->departure}}</td>
+                                    <td>{{$bookings->arrival}}</td>
+                                    <td>{{$bookings->booking_status}}</td>
+                                    <td>
+                                        <div class="btn-grp d-inline-flex">
+                                            <a href="{{url('/ticket/' . $bookings->booking_id)}}"class="btn btn-success me-3">Download</a>
+                                            <a href="{{url('/ticket/'.$bookings->booking_id.'/cancel')}}"class="btn btn-danger" onclick="confirmCancellation(event)">Cancel</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                       <div class="text-warning text-center fs-4 d-flex items-centern justify-content-center"> <b> Oops! No bookings available.🙂</b></div>
 
-    <div class="list-body">
-      <tbody>
-        @foreach($booking as $bookings)
-        <tr>
-        <td>{{$bookings->booking_id}}</td>
-          <td>{{$bookings->bus_number}}</td>
-          <td>{{$bookings->operator_name}}</td>
-          <td>{{$bookings->departure}}</td>
-          <td>{{$bookings->arrival}}</td>
-          <td>{{$bookings->booking_status}}</td>
-         
-          <td>
-            <div class="btn-grp d-inline-flex">
-            <a href="{{url('/ticket/' . $bookings->booking_id)}}"class="btn btn-success me-3">Download</a>
-          <a href="{{url('/ticket/'.$bookings->booking_id.'/cancel')}}"class="btn btn-danger" >Cancel</a>
-            </div>
-            </td>
-        </tr>
-        @endforeach
-    </div>
-  </table></div>
-  
+                    @endif
+                </div>
+                
       </tbody>
       @if(session('success'))
       <div class="alert alert-danger text-center"role="alert">
-        <strong>{{session('success')}}</strong>
+        <strong>{!! Session::get('success') !!}</strong>
       </div>
       @endif
       @if(session('error'))
@@ -128,7 +136,7 @@ th, td {
                             <li><a href="#">Blog</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <div class="col-md=3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">Contact us</h6>
                         <p><i class="fas fa-home me-3"></i> Asansol,paschim bardhaman</p>
                         <p>

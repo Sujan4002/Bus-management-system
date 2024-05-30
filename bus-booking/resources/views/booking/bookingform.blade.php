@@ -138,7 +138,7 @@ th, td {
   .seatSelection{
 margin-top:15px;
 margin-bottom:15px;
-}
+ }
     </style>
 </head>
 <body>
@@ -175,24 +175,24 @@ margin-bottom:15px;
             <div class="Select-btn">
                         <select name="locations" required>
                             <option value="">Select Boarding Bus Stand</option>
-                            <option value="Asn">Asansol Bus Stand</option>
-                            <option value="Ranj">Raniganj Bus Stand</option>
-                            <option value="Durgp">Durgapur Bus Stand</option>
-                            <option value="Kol">Kolkata Bus Stand</option>
+                            <option value="Asansol">Asansol Bus Stand</option>
+                            <option value="Raniganj">Raniganj Bus Stand</option>
+                            <option value="Durgapur">Durgapur Bus Stand</option>
+                            <option value="Kolkata">Kolkata Bus Stand</option>
                         </select>
                         <!--<input type="select-btn" class="form-control" id="locations">-->
             </div>
             <div class="radio_btn">
                      <label>Gender:</label>
-                    <input type="radio" name="gender" id="male" value="m" required>
+                    <input type="radio" name="gender" id="male" value="male" required>
                     <label for="male">Male</label>
-                    <input type="radio" name="gender" id="female" value="f">
+                    <input type="radio" name="gender" id="female" value="female">
                     <label for="female">Female</label>
                     <input type="radio" name="gender" id="others" value="o">
                     <label for="others">Others</label>
                             </div>
                             <div class="seatSelection">
-                                <select name="seat_number">
+                                <select id="seat" name="seat_number[]" multiple>
                                     <option value="">Select Seat</option>
                                     @foreach($seatnumber as $seatnumber)
                                     <option value="{{$seatnumber}}">{{$seatnumber}}</option>
@@ -210,6 +210,7 @@ margin-bottom:15px;
              <input type="submit" value="Confirm Booking">
                      
     </form>
+ 
         </div>
        <div class="bus-details">
        <div class="table">
@@ -233,7 +234,7 @@ margin-bottom:15px;
         <td>{{$buses->fare}}</td>
      </tr>
    </table>
-</div>
+</div> 
 
         <a href="/getyourseat" class="btn btn-dark position-absolute top-0 end-0 m-3">BACK TO HOME</a>
        </div>
